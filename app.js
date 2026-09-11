@@ -279,9 +279,9 @@ function bindEvents() {
   }
 
   // View Switchers
-  DOM.btnViewBack.addEventListener('click', () => setJerseyView('back'));
-  DOM.btnViewFront.addEventListener('click', () => setJerseyView('front'));
-  DOM.btnViewBoth.addEventListener('click', () => setJerseyView('both'));
+  if (DOM.btnViewBack) DOM.btnViewBack.addEventListener('click', () => setJerseyView('back'));
+  if (DOM.btnViewFront) DOM.btnViewFront.addEventListener('click', () => setJerseyView('front'));
+  if (DOM.btnViewBoth) DOM.btnViewBoth.addEventListener('click', () => setJerseyView('both'));
 
   // Payment Slip Upload Events
   initSlipUploadEvents();
