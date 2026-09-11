@@ -797,10 +797,18 @@ function applyNumberStyle() {
 // View switcher removed - always show back view
 
 function setJerseyView(side) {
+  console.log('[VIEW] Switching to:', side);
+  
   AppState.viewSide = side;
 
   [DOM.btnViewBack, DOM.btnViewFront, DOM.btnViewBoth].forEach(btn => {
     if (btn) btn.classList.remove('active');
+  });
+
+  console.log('[VIEW] Elements:', {
+    backEl: !!DOM.jerseyViewBackEl,
+    frontEl: !!DOM.jerseyViewFrontEl,
+    bothEl: !!DOM.jerseyViewBothEl
   });
 
   // Fade out all views first
@@ -815,6 +823,7 @@ function setJerseyView(side) {
   // After fade out, switch views
   setTimeout(() => {
     if (side === 'back') {
+      console.log('[VIEW] Showing back');
       if (DOM.btnViewBack) DOM.btnViewBack.classList.add('active');
       DOM.jerseyViewBackEl.classList.remove('hidden');
       DOM.jerseyViewFrontEl.classList.add('hidden');
@@ -827,6 +836,7 @@ function setJerseyView(side) {
         DOM.jerseyViewBackEl.style.transform = 'scale(1)';
       });
     } else if (side === 'front') {
+      console.log('[VIEW] Showing front');
       if (DOM.btnViewFront) DOM.btnViewFront.classList.add('active');
       DOM.jerseyViewBackEl.classList.add('hidden');
       DOM.jerseyViewFrontEl.classList.remove('hidden');
@@ -839,6 +849,7 @@ function setJerseyView(side) {
         DOM.jerseyViewFrontEl.style.transform = 'scale(1)';
       });
     } else if (side === 'both') {
+      console.log('[VIEW] Showing both');
       if (DOM.btnViewBoth) DOM.btnViewBoth.classList.add('active');
       DOM.jerseyViewBackEl.classList.add('hidden');
       DOM.jerseyViewFrontEl.classList.add('hidden');
