@@ -42,7 +42,9 @@ const AppState = {
   slipChanged: false, // Track if slip was changed during edit mode
   isSearchingEmail: false,
   isSubmitting: false,
-  gasUrl: localStorage.getItem('PURPLE_JERSEY_GAS_URL') || 'https://script.google.com/macros/s/AKfycby4uoyfn-QCbTk2BqZnzb1ZOt54AjAXMe5y0ahMKzFj7MZZQzNeTe8PAcHg5SrynOzhAQ/exec',
+  gasUrl: (typeof CONFIG !== 'undefined' && CONFIG.gasUrl) 
+    ? CONFIG.gasUrl 
+    : (localStorage.getItem('PURPLE_JERSEY_GAS_URL') || 'https://script.google.com/macros/s/AKfycby4uoyfn-QCbTk2BqZnzb1ZOt54AjAXMe5y0ahMKzFj7MZZQzNeTe8PAcHg5SrynOzhAQ/exec'),
   spreadsheetId: '1WOI_8VSHi_6FIaifxPNuX7hTHEElSVKeR8InFHSQZLw',
   existingRecord: null,
   orders: []
