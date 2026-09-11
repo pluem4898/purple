@@ -708,7 +708,17 @@
   </div>
 
   <!-- Configuration (optional - for security) -->
-  <script src="config.js"></script>
+  <script>
+    // Try to load config.js if exists (for local development)
+    (function() {
+      var script = document.createElement('script');
+      script.src = 'config.js';
+      script.onerror = function() {
+        console.log('[CONFIG] config.js not found - using default URL');
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
 
   <!-- Main JS -->
   <script src="app.js"></script>
