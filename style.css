@@ -1,0 +1,623 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Kanit:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=SF+Pro+Display:wght@400;500;600;700&display=swap');
+
+/* ========================================================
+   CUSTOM SPORTS FONT (Inter Miami 23-24)
+   ======================================================== */
+@font-face {
+  font-family: 'JerseyMiami';
+  src: url('./Inter Miami 23-24 Tipografstore.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Apple Liquid Glass Palette */
+  --apple-bg: #f8fafc;
+  --apple-text-primary: #0f172a;
+  --apple-text-secondary: #475569;
+  --apple-text-tertiary: #94a3b8;
+  
+  --apple-purple-primary: #7c3aed;
+  --apple-purple-gradient: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  
+  /* Apple visionOS / macOS Glass */
+  --apple-glass-bg: rgba(255, 255, 255, 0.72);
+  --apple-glass-card: rgba(255, 255, 255, 0.68);
+  --apple-glass-border: rgba(255, 255, 255, 0.85);
+  --apple-glass-border-subtle: rgba(203, 213, 225, 0.45);
+  --apple-glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05), 0 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Kanit', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--apple-bg);
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(221, 214, 254, 0.35) 0px, transparent 45%),
+    radial-gradient(at 85% 20%, rgba(251, 207, 232, 0.3) 0px, transparent 45%),
+    radial-gradient(at 50% 85%, rgba(186, 230, 253, 0.25) 0px, transparent 50%);
+  color: var(--apple-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ========================================================
+   APPLE AMBIENT GLOW
+   ======================================================== */
+.apple-ambient-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  animation: floatAmbient 20s infinite alternate ease-in-out;
+}
+
+.orb-top-left {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #ddd6fe 0%, #f3eefc 70%, transparent 80%);
+  top: -10%;
+  left: -5%;
+}
+
+.orb-bottom-right {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, #fbcfe8 0%, #fdf2f8 70%, transparent 80%);
+  bottom: -10%;
+  right: -5%;
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+@keyframes floatAmbient {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.05); }
+  100% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+/* ========================================================
+   APPLE LIQUID GLASS COMPONENTS
+   ======================================================== */
+.apple-glass-nav {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(226, 232, 240, 0.6),
+    inset 0 1px 1.5px rgba(255, 255, 255, 1);
+  border-radius: 20px;
+}
+
+.apple-glass-card {
+  background: var(--apple-glass-card);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--apple-glass-border);
+  box-shadow: 
+    0 20px 40px -15px rgba(124, 58, 237, 0.06),
+    0 0 0 1px rgba(226, 232, 240, 0.5),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+}
+
+.apple-segmented-control {
+  background: rgba(241, 245, 249, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 14px;
+  padding: 3px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.apple-segmented-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  border-radius: 11px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.apple-segmented-btn:hover {
+  color: #0f172a;
+}
+
+.apple-segmented-btn.active {
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Apple Buttons */
+.apple-btn-primary {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 10px 25px -5px rgba(124, 58, 237, 0.4),
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.apple-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 14px 28px -5px rgba(124, 58, 237, 0.5),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.6);
+}
+
+.apple-btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.apple-btn-secondary {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  color: #334155;
+  font-weight: 600;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+}
+
+.apple-btn-secondary:hover {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+/* Apple Inputs */
+.apple-glass-input {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(226, 232, 240, 0.85);
+  border-radius: 14px;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.apple-glass-input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background: #ffffff;
+  box-shadow: 
+    0 0 0 3.5px rgba(139, 92, 246, 0.18),
+    0 4px 12px rgba(139, 92, 246, 0.06);
+}
+
+.apple-glass-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Size Pills (Apple Style) */
+.apple-size-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(226, 232, 240, 0.85);
+  border-radius: 12px;
+  color: #334155;
+  font-weight: 600;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.apple-size-btn:hover {
+  border-color: #8b5cf6;
+  background: #ffffff;
+  color: #7c3aed;
+  transform: translateY(-1px);
+}
+
+.apple-size-btn.active {
+  background: #7c3aed;
+  border-color: #6d28d9;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+}
+
+/* Color Swatches (Print Style) */
+.apple-style-swatch {
+  border: 1.5px solid rgba(226, 232, 240, 0.8);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.apple-style-swatch:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+.apple-style-swatch.active {
+  background: #ffffff;
+  border-color: #7c3aed;
+  color: #0f172a;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* ========================================================
+   JERSEY STAGE & SVG RENDERING (PURE TRANSPARENT)
+   ======================================================== */
+.jersey-stage-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent !important;
+}
+
+.jersey-card-wrapper {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 780 / 1019;
+  position: relative;
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jersey-hd-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./jersey_clean_back.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.jersey-hd-front {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./jersey_clean_front.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.jersey-hd-both {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./jersey_clean_both.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.jersey-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ========================================================
+   SPORTS TYPOGRAPHY - SOLID VECTOR PRINT (NO DROP SHADOWS)
+   ======================================================== */
+.font-jersey {
+  font-family: 'JerseyMiami', sans-serif !important;
+  letter-spacing: 0.04em;
+}
+
+.font-sport-bold {
+  font-family: 'JerseyMiami', 'Chakra Petch', 'Kanit', sans-serif;
+}
+
+.number-style-clean {
+  fill: #ffffff;
+  filter: none !important;
+}
+
+.number-style-stroke {
+  fill: #ffffff;
+  stroke: #0f172a;
+  stroke-width: 6px;
+  paint-order: stroke fill;
+  filter: none !important;
+}
+
+.number-style-gold {
+  fill: #fde047;
+  filter: none !important;
+}
+
+.number-style-black {
+  fill: #0f172a;
+  filter: none !important;
+}
+
+/* ========================================================
+   APPLE DROPZONE & PAYMENT SLIP UPLOAD
+   ======================================================== */
+.apple-dropzone {
+  border: 2px dashed rgba(167, 139, 250, 0.6);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.apple-dropzone:hover {
+  border-color: #8b5cf6;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 20px -4px rgba(124, 58, 237, 0.12);
+  transform: translateY(-1px);
+}
+
+.apple-dropzone.dragover {
+  border-color: #7c3aed;
+  background: rgba(245, 243, 255, 0.9);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+  transform: scale(1.01);
+}
+
+
+/* ========================================================
+   PAYMENT STATUS BUTTONS (WITH COLORS)
+   ======================================================== */
+.payment-status-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(226, 232, 240, 0.85);
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.payment-status-btn i {
+  font-size: 18px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.payment-status-btn:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.payment-status-btn[data-status="success"]:hover {
+  border-color: #10b981;
+  color: #059669;
+}
+
+.payment-status-btn[data-status="success"]:hover i {
+  color: #10b981;
+  opacity: 1;
+}
+
+.payment-status-btn[data-status="pending"]:hover {
+  border-color: #f59e0b;
+  color: #d97706;
+}
+
+.payment-status-btn[data-status="pending"]:hover i {
+  color: #f59e0b;
+  opacity: 1;
+}
+
+.payment-status-btn[data-status="failed"]:hover {
+  border-color: #ef4444;
+  color: #dc2626;
+}
+
+.payment-status-btn[data-status="failed"]:hover i {
+  color: #ef4444;
+  opacity: 1;
+}
+
+/* Active States with Colors */
+.payment-status-btn[data-status="success"].active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #059669;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.payment-status-btn[data-status="pending"].active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-color: #d97706;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+
+.payment-status-btn[data-status="failed"].active {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-color: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+
+.payment-status-btn.active i {
+  opacity: 1;
+  color: #ffffff;
+}
+
+/* ========================================================
+   ORDER STATUS BUTTONS
+   ======================================================== */
+.status-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(226, 232, 240, 0.85);
+  border-radius: 12px;
+  color: #334155;
+  font-weight: 600;
+  font-size: 11px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.status-btn:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* รอชำระเงิน - gray */
+.status-btn[data-status="รอชำระเงิน"].active {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  border-color: #475569;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(71, 85, 105, 0.35);
+}
+.status-btn[data-status="รอชำระเงิน"]:hover {
+  border-color: #64748b;
+  color: #475569;
+}
+
+/* รอตรวจสอบสลิป - amber */
+.status-btn[data-status="รอตรวจสอบสลิป"].active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-color: #d97706;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+}
+.status-btn[data-status="รอตรวจสอบสลิป"]:hover {
+  border-color: #f59e0b;
+  color: #d97706;
+}
+
+/* ชำระเงินแล้ว - emerald */
+.status-btn[data-status="ชำระเงินแล้ว"].active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #059669;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+.status-btn[data-status="ชำระเงินแล้ว"]:hover {
+  border-color: #10b981;
+  color: #059669;
+}
+
+/* กำลังผลิต - blue */
+.status-btn[data-status="กำลังผลิต"].active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+.status-btn[data-status="กำลังผลิต"]:hover {
+  border-color: #3b82f6;
+  color: #2563eb;
+}
+
+/* จัดส่งแล้ว - purple */
+.status-btn[data-status="จัดส่งแล้ว"].active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-color: #7c3aed;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+}
+.status-btn[data-status="จัดส่งแล้ว"]:hover {
+  border-color: #8b5cf6;
+  color: #7c3aed;
+}
+
+/* เสร็จสิ้น - teal */
+.status-btn[data-status="เสร็จสิ้น"].active {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  border-color: #0d9488;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.35);
+}
+.status-btn[data-status="เสร็จสิ้น"]:hover {
+  border-color: #14b8a6;
+  color: #0d9488;
+}
+
+
+/* ========================================================
+   3D ROTATION ANIMATION - REMOVED
+   ======================================================== */
+.jersey-card-wrapper.rotating:hover {
+  animation-play-state: paused;
+}
+
+/* ========================================================
+   MODAL ANIMATIONS
+   ======================================================== */
+@keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.2s ease-out;
+}
+
+#cancelledOrderModal {
+  transition: opacity 0.2s ease-out;
+}
