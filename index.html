@@ -98,7 +98,14 @@
       <!-- ================= LEFT: PURE TRANSPARENT PRODUCT STAGE ================= -->
       <div class="lg:col-span-6 flex flex-col items-center justify-center space-y-4">
 
-        <!-- View mode removed -->
+        <!-- View mode controls -->
+        <div class="w-full flex items-center justify-between px-2 mb-2">
+          <div class="apple-segmented-control">
+            <button type="button" id="btnViewBack" class="apple-segmented-btn active">ด้านหลัง</button>
+            <button type="button" id="btnViewFront" class="apple-segmented-btn">ด้านหน้า</button>
+            <button type="button" id="btnViewBoth" class="apple-segmented-btn hidden sm:inline-block">คู่หน้า-หลัง</button>
+          </div>
+        </div>
 
         <!-- Floating Transparent Jersey Canvas -->
         <div class="jersey-stage-container w-full flex items-center justify-center py-2">

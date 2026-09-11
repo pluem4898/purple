@@ -124,10 +124,10 @@ const DOM = {
   svgBothNumber: document.getElementById('svgBothNumber'),
   svgBothFrontNumber: document.getElementById('svgBothFrontNumber'),
 
-  // View Switchers - REMOVED (always show back view)
-  btnViewBack: null,
-  btnViewFront: null,
-  btnViewBoth: null,
+  // View Switchers
+  btnViewBack: document.getElementById('btnViewBack'),
+  btnViewFront: document.getElementById('btnViewFront'),
+  btnViewBoth: document.getElementById('btnViewBoth'),
   btnToggleRotation: null,
   btnDownloadJersey: document.getElementById('btnDownloadJersey'),
 
@@ -278,8 +278,10 @@ function bindEvents() {
     DOM.btnCloseSizeGuide.addEventListener('click', () => DOM.modalSizeGuide.classList.add('hidden'));
   }
 
-  // View Switchers - REMOVED
-  // Always show back view only
+  // View Switchers
+  DOM.btnViewBack.addEventListener('click', () => setJerseyView('back'));
+  DOM.btnViewFront.addEventListener('click', () => setJerseyView('front'));
+  DOM.btnViewBoth.addEventListener('click', () => setJerseyView('both'));
 
   // Payment Slip Upload Events
   initSlipUploadEvents();
@@ -793,6 +795,64 @@ function applyNumberStyle() {
 }
 
 // View switcher removed - always show back view
+
+function setJerseyView(side) {
+  AppState.viewSide = side;
+
+  [DOM.btnViewBack, DOM.btnViewFront, DOM.btnViewBoth].forEach(btn => {
+    if (btn) btn.classList.remove('active');
+  });
+
+  // Fade out all views first
+  const allViews = [DOM.jerseyViewBackEl, DOM.jerseyViewFrontEl, DOM.jerseyViewBothEl];
+  allViews.forEach(view => {
+    if (view && !view.classList.contains('hidden')) {
+      view.style.opacity = '0';
+      view.style.transform = 'scale(0.95)';
+    }
+  });
+
+  // After fade out, switch views
+  setTimeout(() => {
+    if (side === 'back') {
+      if (DOM.btnViewBack) DOM.btnViewBack.classList.add('active');
+      DOM.jerseyViewBackEl.classList.remove('hidden');
+      DOM.jerseyViewFrontEl.classList.add('hidden');
+      DOM.jerseyViewBothEl.classList.add('hidden');
+      DOM.jerseyCardWrapper.style.maxWidth = '440px';
+      DOM.jerseyCardWrapper.style.aspectRatio = '780 / 1019';
+      
+      requestAnimationFrame(() => {
+        DOM.jerseyViewBackEl.style.opacity = '1';
+        DOM.jerseyViewBackEl.style.transform = 'scale(1)';
+      });
+    } else if (side === 'front') {
+      if (DOM.btnViewFront) DOM.btnViewFront.classList.add('active');
+      DOM.jerseyViewBackEl.classList.add('hidden');
+      DOM.jerseyViewFrontEl.classList.remove('hidden');
+      DOM.jerseyViewBothEl.classList.add('hidden');
+      DOM.jerseyCardWrapper.style.maxWidth = '440px';
+      DOM.jerseyCardWrapper.style.aspectRatio = '780 / 1019';
+      
+      requestAnimationFrame(() => {
+        DOM.jerseyViewFrontEl.style.opacity = '1';
+        DOM.jerseyViewFrontEl.style.transform = 'scale(1)';
+      });
+    } else if (side === 'both') {
+      if (DOM.btnViewBoth) DOM.btnViewBoth.classList.add('active');
+      DOM.jerseyViewBackEl.classList.add('hidden');
+      DOM.jerseyViewFrontEl.classList.add('hidden');
+      DOM.jerseyViewBothEl.classList.remove('hidden');
+      DOM.jerseyCardWrapper.style.maxWidth = '680px';
+      DOM.jerseyCardWrapper.style.aspectRatio = '1543 / 1019';
+      
+      requestAnimationFrame(() => {
+        DOM.jerseyViewBothEl.style.opacity = '1';
+        DOM.jerseyViewBothEl.style.transform = 'scale(1)';
+      });
+    }
+  }, 200);
+}
 
 // ==========================================
 // 7. SMART EMAIL LOOKUP & DATABASE
